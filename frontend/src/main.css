@@ -1,0 +1,253 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat+Brush&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+  /* background-color: #09b7bf; */
+  font-family: 'Caveat Brush', serif;
+  background: url("/drawing.png");
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+main {
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.notice {
+  align-self: center;
+  width: 500px;
+  margin-top: 20px;
+  text-align: center;
+  border-radius: 50em;
+  background-color: aliceblue;
+}
+.notice h1 {
+  font-size: 2rem;
+}
+
+.board {
+    display: flex;
+    justify-content: space-around;
+    gap: 50px;
+}
+
+.player-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.player-container h1 {
+  font-size: 2rem;
+  align-self: center;
+  padding: 10px 0;
+}
+
+.player1, .player2 {
+    /* border: 1px solid black; */
+    display: grid;
+    grid-template-columns: repeat(10, 40px);
+    grid-auto-rows: 40px;
+    background: rgba(255, 255, 255, 0.9);
+    opacity: 0.9;
+}
+
+.player1 div, .player2 div {
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    user-select: none;
+}
+
+.player2 {
+    pointer-events: none;
+}
+
+#container {
+    min-height: 100px;
+    margin: 0 80px;
+    padding: 20px;
+    border: 1px solid black;
+    background: darkgray;
+    opacity: 0.9;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.ship {
+    cursor: move;
+    display: flex;
+    margin: 10px;
+    background: white;
+}
+
+.ship div {
+    background: lightgreen;
+    border: 2px solid #0d570d;
+    width: 40px;
+    height: 40px;
+}
+
+.hovered {
+    background-color: lightseagreen;
+}
+
+button {
+  align-self: center;
+  padding: 10px 20px;
+  margin: 10px 0;
+  font-family: 'Caveat Brush', serif;
+  border: none;
+  border-radius: 50em;
+  background-color: black;
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 1.5rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-decoration: none;
+  
+  &:hover{
+    cursor: pointer;
+    background-color: white;
+    color: #1c2020;
+    box-shadow: 6px 9px 7px -3px rgba(0,0,0,0.5);
+  }
+
+  &:disabled{
+    cursor: auto;
+    background-color: black;
+    color: white;
+    opacity: 0.3;
+    box-shadow: none;
+  }
+
+}
+
+svg {
+  width: 20px;
+  fill: white;
+}
+
+.go-back {
+  position: absolute;
+  top: 2%;
+}
+
+.go-back button {
+  border-radius: 50%;
+  padding: 5px 10px;
+  
+  &:hover {
+    svg {
+      fill: black;
+    }
+  }
+}
+
+@keyframes delay {
+    0%, 40%, 100% { 
+      transform: scaleY(0.05);
+      -webkit-transform: scaleY(0.05);
+    }  20% { 
+      transform: scaleY(1.0);
+      -webkit-transform: scaleY(1.0);
+    }
+}
+
+.loader {
+    margin: 0 auto;
+    width: 60px;
+    height: 50px;
+    text-align: center;
+    font-size: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    z-index: 500;
+    opacity: 0;
+    
+    > div {
+      height: 100%;
+      width: 8px;
+      /* display: inline-block; */
+      float: left;
+      margin-left: 2px;
+      animation: delay 0.8s infinite ease-in-out;
+    }
+    
+    .bar1{
+      background-color: #754fa0 ;
+    }
+    .bar2{
+      background-color: #09b7bf;
+      animation-delay: -0.7s;
+    }
+    .bar3{
+      background-color: #90d36b;
+      animation-delay: -0.6s;
+    }
+    .bar4{
+      background-color: #f2d40d;
+      animation-delay: -0.5s;
+    }
+    .bar5{
+      background-color: #fcb12b;
+      animation-delay: -0.4s;
+    }
+    .bar6{
+      background-color: #ed1b72;
+      animation-delay: -0.3s;
+    }
+  }
+
+  .overlay {
+    position: fixed;
+    width: 100%;
+    height: 50vh;
+    /* background: #1c2020; */
+    left: 0;
+    z-index: 1;
+    pointer-events: none;
+  }
+  
+  .overlay.top {
+    top: -50vh;
+    background: url("/sea_top.png");
+  }
+  
+  .overlay.bottom {
+    bottom: -50vh;
+    background: url("/sea_bottom.png");
+  }
+  
+  @media (max-width: 900px) {
+    .player1, .player2 {
+      display: grid;
+      grid-template-columns: repeat(10, 4vw);
+      grid-auto-rows: 4vw;
+    }
+
+    .ship div {
+      background: lightgreen;
+      border: 2px solid #0d570d;
+      width: 4vw;
+      height: 4vw;
+    }
+
+    .notice {
+      width: 300px;
+    }
+
+    #container {
+      min-height: 10vw;
+    }
+
+  }
